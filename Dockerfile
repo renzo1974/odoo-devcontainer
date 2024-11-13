@@ -17,4 +17,9 @@ RUN mkdir -p /workspace/core/odoo && \
 COPY launch.json /workspace/.vscode/launch.json
 COPY clone_oca_repos.py /workspace/scripts/clone_oca_repos.py
 
-# Install additional tools or dependencies if needed
+RUN apt-get update && apt-get install -y \
+    git \
+    vim \
+    curl \
+    wget \
+    && apt-get clean
