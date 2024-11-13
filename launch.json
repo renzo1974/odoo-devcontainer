@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Start Odoo",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/usr/bin/odoo",
+            "args": [
+                "-c", "/workspace/conf/odoo/odoo.conf", 
+                "--db_host", "db", 
+                "--db_port", "5432", 
+                "--db_user", "odoo", 
+                "--db_password", "odoo"
+            ],
+            "console": "integratedTerminal",
+            "env": {}
+        }
+    ]
+}
