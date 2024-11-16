@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import requests
 import subprocess
 import os
@@ -9,7 +11,7 @@ api_url = "https://api.github.com/orgs/OCA/repos?per_page=100"
 class OcaRepoGather:
 
     # Funktion, um alle Repos der OCA zu holen
-    def get_oca_repos():
+    def get_oca_repos(self):
         repos = []
         page = 1
 
@@ -29,7 +31,7 @@ class OcaRepoGather:
         return repos
 
     # Funktion, um die Repositories zu klonen
-    def clone_repos(repos, target_dir):
+    def clone_repos(self, repos, target_dir):
         blacklist = [
             '.github',
             'ansible-odoo',
@@ -81,8 +83,7 @@ class OcaRepoGather:
             print(f"Klone Repository: {repo_name}")
             subprocess.run(["git", "clone", "-b", "17.0", "--depth", "1", clone_url], cwd=target_dir)
 
-    @staticmethod
-    def install_external_dependencies(target_dir):
+    def install_external_dependencies(self, target_dir):
         for repo_name in os.listdir(target_dir):
             repo_path = os.path.join(target_dir, repo_name)
             manifest_path = os.path.join(repo_path, '__manifest__.py')

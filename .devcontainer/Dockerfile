@@ -2,6 +2,13 @@ FROM odoo:17
 
 USER root
 
+RUN apt-get update && apt-get install -y \
+    git \
+    vim \
+    curl \
+    wget \
+    && apt-get clean
+
 RUN sed -i 's|; admin_passwd = admin|admin_passwd = $pbkdf2-sha512$600000$OCdkDAHAWKsVojRGCGFMaQ$4xenDT3kygh/YXGS8Ba8QdR3vwawcgqoO6iKzW.zMNZbLYj.1QWi38Ry3nikz9zM.qBgVJ3dcIfGA8uHTwn58Q|g' /etc/odoo/odoo.conf
 
 RUN mkdir -p /workspace/core/odoo && \
@@ -17,9 +24,5 @@ RUN mkdir -p /workspace/core/odoo && \
 COPY launch.json /workspace/.vscode/launch.json
 COPY clone_oca_repos.py /workspace/scripts/clone_oca_repos.py
 
-RUN apt-get update && apt-get install -y \
-    git \
-    vim \
-    curl \
-    wget \
-    && apt-get clean
+RUN /workspace/scripts/clone_oca_repos.py
+
