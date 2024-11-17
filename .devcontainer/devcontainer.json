@@ -1,31 +1,31 @@
 {
-    "name": "Odoo 17.0 Devcontainer",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "devcontainer",
-    "features": {
-        "git": {}
-    },
-    "postCreateCommand": "python3 /workspace/scripts/clone_oca_repos.py",
-    "overrideCommand": true,
-    "containerUser": "root",
-    "remoteUser": "root",
-    "workspaceFolder": "/workspace",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-python.python",
-                "ms-python.debugpy"
-            ],
-            "settings": {
-                "files.watcherExclude": {
-                    "**/odoo/**": true,
-                    "**/addons/**": true,
-                    "**/conf/**": true
-                },
-                "files.exclude": {
-                    "**/.devcontainer": true
-                }
-            }
+  "name": "Odoo 17.0 Devcontainer",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "features": {
+    "git": {}
+  },
+  "overrideCommand": true,
+  "containerUser": "root",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [8069],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy"
+      ],
+      "settings": {
+        "files.watcherExclude": {
+          "**/odoo/**": true,
+          "**/addons/**": true,
+          "**/conf/**": true
+        },
+        "files.exclude": {
+          "**/.devcontainer": true
         }
+      }
     }
+  }
 }

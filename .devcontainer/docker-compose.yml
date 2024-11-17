@@ -1,9 +1,17 @@
-version: '3.8'
 services:
-  devcontainer:
-    build: .
+  app:
+    build:
+      context: .
+      args:
+        ODOO_VERSION: 17.0
+        OCA_ADDONS_PATH: /opt/odoo/oca
+        ODOO_CONF_PATH: /etc/odoo/odoo.conf
     network_mode: service:db
     command: sleep infinity
+    volumes:
+      - workspace-data:/workspace
+      - oca-addons:/opt/odoo/oca
+      - odoo-config:/etc/odoo
 
   db:
     image: postgres:latest
@@ -17,3 +25,6 @@ services:
 
 volumes:
   postgres-data:
+  odoo-config:
+  workspace-data:
+  oca-addons:
